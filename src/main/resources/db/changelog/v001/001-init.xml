@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet author="rshmidt" id="creates-table-clients">
+        <sql endDelimiter=";;" splitStatements="true"> <![CDATA[
+            DROP TABLE IF EXISTS secret;;
+            CREATE TABLE secret
+            (
+                id            VARCHAR(36),
+                server_secret DECIMAL(157, 0),
+                user_result   DECIMAL(157, 0),
+                module        DECIMAL(157, 0),
+                generator     DECIMAL(157, 0),
+                server_result DECIMAL(157, 0),
+                secret        DECIMAL(157, 0),
+
+                PRIMARY KEY (id)
+            );;
+            ]]></sql>
+    </changeSet>
+
+</databaseChangeLog>

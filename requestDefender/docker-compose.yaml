@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:14.0
+    container_name: request_defender_postgres
+    restart: always
+    ports:
+      - "13432:5432"
+    environment:
+      POSTGRES_PASSWORD: "111"
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
