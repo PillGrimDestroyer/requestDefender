@@ -1,7 +1,6 @@
 package kz.hawk.requestdefender.impl;
 
 import kz.hawk.requestdefender.dao.SecretDao;
-import kz.hawk.requestdefender.model.dao.Secret;
 import kz.hawk.requestdefender.model.request.PrepareRequest;
 import kz.hawk.requestdefender.register.SecretRegister;
 import kz.hawk.requestdefender.util.ParentTestNG;
@@ -26,21 +25,6 @@ public class SecretRegisterImplTest extends ParentTestNG {
   
   @Autowired
   private SecretRegister secretRegister;
-  
-  @Test
-  void test() {
-    Secret secret = new Secret();
-    
-    secret.setId(idGenerator.generateId());
-    
-    secretDao.save(secret);
-    
-    secret.setModule(new BigInteger("2").pow(521).subtract(BigInteger.ONE));
-    
-    secretDao.save(secret);
-    
-    System.out.println(secret);
-  }
   
   @Test
   public void testPrepareRequest() {
