@@ -43,23 +43,4 @@ public class SecretRegisterImpl implements SecretRegister {
     return response;
   }
   
-  public static void main(String[] args) {
-    var g = new Random().nextInt(Integer.MAX_VALUE - 1) + 1;
-    var p = new BigInteger("2").pow(521).subtract(BigInteger.ONE);
-    var r = new Random().nextInt(Integer.MAX_VALUE - 1) + 1;
-    var x = BigInteger.valueOf(g).modPow(BigInteger.valueOf(r), p);
-    
-    System.out.print("generator (g) = ");
-    System.out.println(g);
-    
-    System.out.print("simple number (p) = ");
-    System.out.println(p);
-    
-    System.out.print("server secret number (r) = ");
-    System.out.println(r);
-    
-    System.out.print("server answer (x) = ");
-    System.out.println(x);
-  }
-  
 }
