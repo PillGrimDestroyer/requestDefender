@@ -18,9 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SecretRegisterImplTest extends ParentTestNG {
   
   @Autowired
-  private IdGenerator idGenerator;
-  
-  @Autowired
   private SecretDao secretDao;
   
   @Autowired
