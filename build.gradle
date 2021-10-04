@@ -1,12 +1,17 @@
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.Dockerfile
+
 plugins {
     id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'com.bmuschko.docker-remote-api' version '7.1.0'
 }
 
 group = 'kz.hawk'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '11'
+def imageName = "hawk6884/$project.name:$project.version"
 
 configurations {
     compileOnly {
@@ -66,4 +71,25 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+
+task createDockerFile(type: Dockerfile) {
+    destFile = file('build/docker/Dockerfile');
+    from("openjdk:11.0-jre")
+    copyFile("${project.name}-${project.version}.jar", "app.jar")
+    entryPoint("java", "-jar", "/app.jar")
+}
+
+task copyJar(type: Copy) {
+    dependsOn bootJar, createDockerFile
+    from('build/libs') { include '*.jar' }
+    into('build/docker')
+}
+
+task createDockerImage(type: DockerBuildImage) {
+    dependsOn copyJar
+    inputDir = file('build/docker')
+    images = [imageName]
+    noCache = true
 }
