@@ -1,6 +1,7 @@
 package kz.hawk.requestdefender.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import kz.hawk.requestdefender.config.SecretRegisterConfig;
 import kz.hawk.requestdefender.dao.SecretDao;
 import kz.hawk.requestdefender.model.dao.Secret;
 import kz.hawk.requestdefender.model.request.CheckRequest;
@@ -26,8 +27,9 @@ import java.util.stream.Collectors;
 @Slf4j
 public class SecretRegisterImpl implements SecretRegister {
 
-  private final IdGenerator idGenerator;
-  private final SecretDao   secretDao;
+  private final IdGenerator          idGenerator;
+  private final SecretDao            secretDao;
+  private final SecretRegisterConfig config;
 
   @Override
   public PrepareResponse prepareRequest(PrepareRequest prepareRequest) {
@@ -82,6 +84,12 @@ public class SecretRegisterImpl implements SecretRegister {
     return MD5.encode(jsonSortedBody).equals(checkRequest.getHeader())
            ? CheckResponse.ofOk()
            : CheckResponse.ofError("Wrong request body");
+  }
+
+  @Override
+  public void clearOldSecrets() {
+    log.info("Deleting secrets older than " + config.storeDays() + " days");
+    secretDao.deleteOldSecrets(config.storeDays());
   }
 
 }

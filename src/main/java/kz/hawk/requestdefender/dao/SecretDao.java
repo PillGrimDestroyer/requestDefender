@@ -1,6 +1,7 @@
 package kz.hawk.requestdefender.dao;
 
 import kz.hawk.requestdefender.model.dao.Secret;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -16,10 +17,15 @@ public interface SecretDao {
       "server_result = #{x.serverResult}, \"secret\" = #{x.secret}"
   )
   void save(@Param("x") Secret secret);
-  
+
   @Select(
     "select * from secret where id = #{id}"
   )
   Secret getById(@Param("id") String id);
-  
+
+  @Delete(
+    "delete from secret " +
+      "where created_at < now() - (#{d}::varchar || ' days')::interval"
+  )
+  void deleteOldSecrets(@Param("d") Integer days);
 }

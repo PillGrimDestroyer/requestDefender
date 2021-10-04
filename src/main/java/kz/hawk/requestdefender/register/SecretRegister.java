@@ -6,8 +6,10 @@ import kz.hawk.requestdefender.model.response.CheckResponse;
 import kz.hawk.requestdefender.model.response.PrepareResponse;
 
 public interface SecretRegister {
-  
+
   PrepareResponse prepareRequest(PrepareRequest prepareRequest);
-  
+
   CheckResponse checkRequest(CheckRequest checkRequest);
+
+  void clearOldSecrets();
 }

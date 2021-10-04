@@ -59,6 +59,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
     implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.5'
 
+    // https://mvnrepository.com/artifact/kz.greetgo/greetgo.scheduling
+    implementation 'kz.greetgo:greetgo.scheduling:3.0.3'
+
 }
 
 test {
