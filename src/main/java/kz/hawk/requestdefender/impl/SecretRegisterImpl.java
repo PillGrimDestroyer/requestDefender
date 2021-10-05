@@ -62,6 +62,10 @@ public class SecretRegisterImpl implements SecretRegister {
     String jsonSortedBody;
     var    secret = secretDao.getById(checkRequest.getSecretId().toString());
 
+    if (secret == null || secret.getSecret() == null) {
+      return CheckResponse.ofError("Unknown request secret");
+    }
+
     var sortedBody = checkRequest.getBody().entrySet().stream()
                                  .sorted(Map.Entry.comparingByKey())
                                  .collect(Collectors.toMap(
