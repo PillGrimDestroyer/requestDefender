@@ -5,7 +5,7 @@ services:
   postgres:
     image: postgres:14.0
     container_name: request_defender_postgres
-    restart: always
+    restart: unless-stopped
     ports:
       - "13432:5432"
     environment:
