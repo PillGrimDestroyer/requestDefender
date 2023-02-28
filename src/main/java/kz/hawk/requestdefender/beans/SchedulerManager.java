@@ -51,11 +51,11 @@ public class SchedulerManager implements HasApplicationFinishing, InitializingBe
     SchedulerConfigStore configStore = new SchedulerConfigStoreInFile(getDir());
 
     List<Task> taskList = newTaskCollector()
-      .setSchedulerConfigStore(configStore)
-      .addControllers(new ArrayList<>(schedulers))
-      .setConfigExtension(".scheduler.txt")
-      .setConfigErrorsExtension(".scheduler.errors.txt")
-      .getTasks();
+        .setSchedulerConfigStore(configStore)
+        .addControllers(new ArrayList<>(schedulers))
+        .setConfigExtension(".scheduler.txt")
+        .setConfigErrorsExtension(".scheduler.errors.txt")
+        .getTasks();
 
     log.info("------------------------------------------- SCHEDULER -------------------------------------------");
     for (Task task : taskList) {
@@ -64,10 +64,10 @@ public class SchedulerManager implements HasApplicationFinishing, InitializingBe
     log.info("-------------------------------------------------------------------------------------------------");
 
     scheduler = newSchedulerBuilder()
-      .addTasks(taskList)
-      .setThrowCatcher(this::logErrorOnly)
-      .setPingDelayMillis(500)
-      .build();
+        .addTasks(taskList)
+        .setThrowCatcher(this::logErrorOnly)
+        .setPingDelayMillis(500)
+        .build();
 
     scheduler.startup();
   }

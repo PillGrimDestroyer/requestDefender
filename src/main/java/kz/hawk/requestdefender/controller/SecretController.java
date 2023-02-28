@@ -14,22 +14,22 @@ import javax.validation.Valid;
 @RequestMapping("/secret")
 @RequiredArgsConstructor
 public class SecretController {
-  
+
   private final SecretRegister secretRegister;
-  
+
   @PostMapping("/prepare")
   public @ResponseBody
   ResponseEntity<?> prepare(@Valid @RequestBody PrepareRequest prepareRequest) {
     var resp = secretRegister.prepareRequest(prepareRequest);
-    
+
     return new ResponseEntity<>(resp, HttpStatus.OK);
   }
-  
+
   @PostMapping("/request_check")
   public @ResponseBody
   ResponseEntity<?> checkRequest(@RequestBody CheckRequest checkRequest) {
     var resp = secretRegister.checkRequest(checkRequest);
-    
+
     return new ResponseEntity<>(resp, HttpStatus.OK);
   }
 }

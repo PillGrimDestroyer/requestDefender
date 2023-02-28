@@ -10,13 +10,13 @@ import org.testng.annotations.BeforeMethod;
 @SpringBootTest
 @ContextConfiguration(classes = {BeanConfigTests.class})
 public class ParentTestNG extends AbstractTestNGSpringContextTests {
-  
+
   @Autowired
   protected IdGenerator idGenerator;
-  
+
   @BeforeMethod
   public void beforeRunTest() {
-  
+
   }
-  
+
 }

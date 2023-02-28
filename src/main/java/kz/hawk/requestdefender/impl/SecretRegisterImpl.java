@@ -69,10 +69,10 @@ public class SecretRegisterImpl implements SecretRegister {
     var sortedBody = checkRequest.getBody().entrySet().stream()
                                  .sorted(Map.Entry.comparingByKey())
                                  .collect(Collectors.toMap(
-                                   Map.Entry::getKey,
-                                   Map.Entry::getValue,
-                                   (oldValue, newValue) -> oldValue,
-                                   LinkedHashMap::new
+                                     Map.Entry::getKey,
+                                     Map.Entry::getValue,
+                                     (oldValue, newValue) -> oldValue,
+                                     LinkedHashMap::new
                                  ));
 
     sortedBody.put(secret.getUserResult().toString(), secret.getSecret().toString());

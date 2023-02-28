@@ -11,23 +11,23 @@ import javax.sql.DataSource;
 
 @Component
 public class DatasourceBean {
-  
+
   @Autowired
   private DbConfig dbConfig;
-  
+
   @Bean
   public DataSource dataSource() {
     var url = "jdbc:postgresql://" + dbConfig.host() + ":" + dbConfig.port() + "/" + dbConfig.dbName();
-    
+
     var config = new HikariConfig();
-    
+
     config.setDriverClassName("org.postgresql.Driver");
     config.setJdbcUrl(url);
     config.setUsername(dbConfig.username());
     config.setPassword(dbConfig.password());
     config.setMaximumPoolSize(50);
-    
+
     return new HikariDataSource(config);
   }
-  
+
 }

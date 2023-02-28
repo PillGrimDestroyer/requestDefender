@@ -76,10 +76,10 @@ public class SecretRegisterImplTest extends ParentTestNG {
     var sortedBody = body.entrySet().stream()
                          .sorted(Map.Entry.comparingByKey())
                          .collect(Collectors.toMap(
-                           Map.Entry::getKey,
-                           Map.Entry::getValue,
-                           (oldValue, newValue) -> oldValue,
-                           LinkedHashMap::new
+                             Map.Entry::getKey,
+                             Map.Entry::getValue,
+                             (oldValue, newValue) -> oldValue,
+                             LinkedHashMap::new
                          ));
 
     sortedBody.put(secret.getUserResult().toString(), secret.getSecret().toString());

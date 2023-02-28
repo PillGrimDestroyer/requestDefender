@@ -7,5 +7,5 @@ public interface HasApplicationFinishing {
   default double stoppingOrderIndex() {
     return 10.0;
   }
-  
+
 }

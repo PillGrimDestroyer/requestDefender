@@ -16,7 +16,7 @@ public class CheckRequest {
 
   @NotEmpty(message = "'header' is required")
   private String header;
-  
+
   @NotNull(message = "'body' is required")
   @Size(min = 1, message = "'body' must be filled")
   private Map<String, Object> body;

@@ -16,26 +16,26 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-  
+
   @NotNull
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(
-    @NotNull MethodArgumentNotValidException ex,
-    @NotNull HttpHeaders headers,
-    @NotNull HttpStatus status,
-    @NotNull WebRequest request
+      @NotNull MethodArgumentNotValidException ex,
+      @NotNull HttpHeaders headers,
+      @NotNull HttpStatus status,
+      @NotNull WebRequest request
   ) {
     var body = new HashMap<String, List<String>>();
-    
+
     var errors = ex.getBindingResult()
                    .getFieldErrors()
                    .stream()
                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
                    .collect(Collectors.toList());
-    
+
     body.put("errors", errors);
-    
+
     return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
   }
-  
+
 }

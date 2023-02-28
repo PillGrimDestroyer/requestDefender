@@ -14,10 +14,10 @@ import javax.sql.DataSource;
 @Configuration
 @MapperScan(basePackageClasses = BeanConfigDao.class)
 public class DbConfiguration {
-  
+
   @Autowired
   private DataSource dataSource;
-  
+
   @Bean
   public SpringLiquibase liquibase() {
     var liquibase = new SpringLiquibase();
@@ -25,10 +25,10 @@ public class DbConfiguration {
     liquibase.setDataSource(dataSource);
     return liquibase;
   }
-  
+
   @Bean
   public IdGenerator idGenerator() {
     return new AlternativeJdkIdGenerator();
   }
-  
+
 }
