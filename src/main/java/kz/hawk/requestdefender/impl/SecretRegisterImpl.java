@@ -22,9 +22,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class SecretRegisterImpl implements SecretRegister {
 
   private final IdGenerator          idGenerator;
@@ -60,7 +60,7 @@ public class SecretRegisterImpl implements SecretRegister {
   @Override
   public CheckResponse checkRequest(CheckRequest checkRequest) {
     String jsonSortedBody;
-    var    secret = secretDao.getById(checkRequest.getSecretId().toString());
+    var    secret = secretDao.getById(checkRequest.getSecretId());
 
     if (secret == null || secret.getSecret() == null) {
       return CheckResponse.ofError("Unknown request secret");

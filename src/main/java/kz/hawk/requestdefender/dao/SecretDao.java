@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.UUID;
+
 public interface SecretDao {
 
   @Insert(
@@ -21,7 +23,7 @@ public interface SecretDao {
   @Select(
       "select * from secret where id = #{id}"
   )
-  Secret getById(@Param("id") String id);
+  Secret getById(@Param("id") UUID id);
 
   @Delete(
       "delete from secret " +

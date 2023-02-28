@@ -1,4 +1,4 @@
-package kz.hawk.requestdefender.beans;
+package kz.hawk.requestdefender.beans.all;
 
 import kz.greetgo.scheduling.HasScheduled;
 import kz.greetgo.scheduling.collector.*;
@@ -20,9 +20,9 @@ import java.util.List;
 import static kz.greetgo.scheduling.collector.TaskCollector.newTaskCollector;
 import static kz.greetgo.scheduling.scheduler.SchedulerBuilder.newSchedulerBuilder;
 
+@Slf4j
 @Component
 @DependsOn("liquibase")
-@Slf4j
 @RequiredArgsConstructor
 public class SchedulerManager implements HasApplicationFinishing, InitializingBean {
 

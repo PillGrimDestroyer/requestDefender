@@ -1,4 +1,4 @@
-package kz.hawk.requestdefender.beans;
+package kz.hawk.requestdefender.beans.all;
 
 import kz.hawk.requestdefender.util.HasApplicationFinishing;
 import lombok.RequiredArgsConstructor;

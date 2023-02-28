@@ -37,6 +37,10 @@ dependencies {
     // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 
+    // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter-test
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.0'
+
+
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     runtimeOnly 'org.postgresql:postgresql:42.2.24'
 
@@ -70,7 +74,8 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG()
+    testLogging.exceptionFormat = "full"
 }
 
 

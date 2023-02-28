@@ -1,6 +1,7 @@
 package kz.hawk.requestdefender.impl;
 
 import kz.hawk.requestdefender.dao.SecretDao;
+import kz.hawk.requestdefender.dao.SecretTestDao;
 import kz.hawk.requestdefender.model.dao.Secret;
 import kz.hawk.requestdefender.model.request.CheckRequest;
 import kz.hawk.requestdefender.model.request.PrepareRequest;
@@ -8,10 +9,9 @@ import kz.hawk.requestdefender.register.SecretRegister;
 import kz.hawk.requestdefender.util.Json;
 import kz.hawk.requestdefender.util.MD5;
 import kz.hawk.requestdefender.util.ParentTestNG;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.testng.annotations.Test;
 
 import java.math.BigInteger;
 import java.time.Instant;
@@ -20,11 +20,13 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RequiredArgsConstructor
 public class SecretRegisterImplTest extends ParentTestNG {
 
   @Autowired
   private SecretDao secretDao;
+
+  @Autowired
+  private SecretTestDao ss;
 
   @Autowired
   private SecretRegister secretRegister;
@@ -44,14 +46,14 @@ public class SecretRegisterImplTest extends ParentTestNG {
     //
     //
 
-    var serverFinalSecret = secretDao.getById(resp.getId().toString());
+    var serverFinalSecret = secretDao.getById(resp.getId());
     var clientFinalSecret = resp.getServerResult().modPow(userSecret, req.getModule());
 
     assertThat(serverFinalSecret.getSecret()).isEqualTo(clientFinalSecret);
   }
 
-  @SneakyThrows
   @Test
+  @SneakyThrows
   public void testCheckRequest() {
     var userSecret   = BigInteger.valueOf(new Random().nextInt(Integer.MAX_VALUE - 1) + 1);
     var serverSecret = BigInteger.valueOf(new Random().nextInt(Integer.MAX_VALUE - 1) + 1);
