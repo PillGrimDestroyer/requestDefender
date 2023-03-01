@@ -1,13 +1,11 @@
 package kz.hawk.requestdefender.dao;
 
 import kz.hawk.requestdefender.model.dao.Secret;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.UUID;
 
+@Mapper
 public interface SecretDao {
 
   @Insert(
